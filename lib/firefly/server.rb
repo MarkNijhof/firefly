@@ -19,8 +19,6 @@ module Firefly
 
     dir = File.join(File.dirname(__FILE__), '..', '..')
 
-    set :views,   @config[:views]
-    set :public,  @config[:public]
     set :haml,    {:format => :html5 }
     set :static,  true
     set :session_secret, nil
@@ -282,6 +280,9 @@ module Firefly
       super
       @config = config.is_a?(Config) ? config : Firefly::Config.new(config)
       @config.instance_eval(&blk) if block_given?
+
+      set :views,   @config[:views]
+      set :public,  @config[:public]
 
       begin
         DataMapper.setup(:default, @config[:database])
