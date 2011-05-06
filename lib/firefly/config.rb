@@ -1,6 +1,7 @@
 # encoding: UTF-8
 module Firefly
   class Config < Hash
+    dir = File.join(File.dirname(__FILE__), '..', '..')
 
     DEFAULTS = {
       :hostname         => "localhost:3000",
@@ -10,6 +11,8 @@ module Firefly
       :tweet            => "Check this out: %short_url%",
       :hyves_title      => "Check this out",
       :hyves_body       => "Check this out: %short_url%"
+      :views            => "#{dir}/views"
+      :public           => "#{dir}/public"
     }
 
     def initialize obj
